@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<definitions name="CreateRequestService"
+  targetNamespace="urn:Mp"
+  xmlns:tns="urn:Aritmetica"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <message name="CreateRequest">
+    <part name="description" type="xsd:string" />
+    <part name="statusDT" type="xs:string" />
+    <part name="comments" type="xs:string" />
+  </message>
+  <message name="CreateResponse">
+     <part name="idRequest" type="xsd:integer" />
+   </message>
+   <portType name="RequestPort">
+     <operation name="create">
+       <input message="tns:CreateRequest" />
+       <output message="tns:CreateResponse" />
+     </operation>
+   </portType>
+   <binding name="CreateRequest" type="tns:RequestPort">
+     <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+     <operation name="create">
+       <soap:operation soapAction="urn:Mp#create" />
+       <input>
+         <soap:body use="encoded" namespace="urn:Mp"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+       </input>
+       <output>
+         <soap:body use="encoded" namespace="urn:Mp"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+       </output>
+     </operation>
+   </binding>
+   <service name="AritmeticaServicio">
+     <port name="RequestPort" binding="tns:CreateRequest">
+       <soap:address location="http://prueba/mpsot/app/createreqws.php" />
+     </port>
+   </service>
+</definitions>
