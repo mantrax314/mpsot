@@ -35,7 +35,7 @@
        </output>
      </operation>
    </binding>
-   <service name="AritmeticaServicio">
+   <service name="CreateRequestService">
      <port name="RequestPort" binding="tns:CreateRequest">
        <soap:address location="http://prueba/mpsot/app/createreqws.php" />
      </port>
